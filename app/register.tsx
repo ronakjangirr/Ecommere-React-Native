@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 60, // Add space for the sticky header
+    paddingTop: 20, // Add space for the sticky header
     paddingHorizontal: 20,
     flexGrow: 1, // Make the ScrollView content grow
   },
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: 30,
     fontWeight: "500",
-    marginBottom: 70,
+    marginBottom: 40,
   },
   input: {
     padding: 10,

@@ -93,7 +93,9 @@ function Login() {
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text>Welcome</Text>
+      <View style={styles.welcomeContainer}>
+        <Text style={styles.welcomeFont}>Welcome</Text>
+      </View>
       <View style={styles.form}>
         <View style={styles.fontStyle}>
           <Text>
@@ -145,9 +147,18 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 60, // Add space for the sticky header
-    paddingHorizontal: 20,
+    // paddingTop: 60, // Add space for the sticky header
+    paddingHorizontal: 10,
     flexGrow: 1, // Make the ScrollView content grow
+  },
+  welcomeContainer: {
+    alignItems: "flex-start", // Aligns the "Welcome" text to the start (left side)
+    marginBottom: 5, // Adds space between "Welcome" and the form
+  },
+  welcomeFont: {
+    fontSize: 28,
+    fontWeight: "500",
+    marginBottom: 20,
   },
   form: {
     borderColor: "#ddd", // Border color
@@ -214,7 +225,7 @@ const styles = StyleSheet.create({
     borderWidth: 2, // You need to specify the border width
     borderColor: "grey",
     alignItems: "center",
-    width:"80%",
+    width: "80%",
     maxWidth: 450,
   },
   buttonTextCreate: {

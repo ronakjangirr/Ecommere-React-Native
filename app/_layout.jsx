@@ -1,10 +1,14 @@
+import { Text, View, StyleSheet, Image } from "react-native";
 import { Stack } from "expo-router";
-import { Text, View, StyleSheet } from "react-native";
 
 function CustomHeader() {
   return (
     <View style={styles.stickyHeader}>
-      <Text style={styles.headerText}>Sticky Header</Text>
+      <Image
+          source={require('../assets/images/logo.png')} // Adjust the path to your logo
+          style={styles.logo}
+        />
+      {/* <Text style={styles.headerText}>Sticky Header</Text> */}
     </View>
   );
 }
@@ -22,17 +26,17 @@ export default function Layout() {
     <View style={styles.container}>
       <CustomHeader />
       <View style={styles.stackContainer}>
-        {/* <Stack>
-          <Stack.Screen
-            name="login"
-            options={{ path: "login", headerShown: false }}
-          />
-          <Stack.Screen
-            name="register"
-            options={{ path: "/", headerShown: false }}
-          />
-        </Stack> */}
-        <Stack />
+        {/* <Stack/>  // Ex-1 Will show header name to all the route     */}  
+        
+        <Stack 
+        screenOptions={{ headerShown: false }}   // Ex-2 Will not show header name to any route   
+        />
+
+        {/* <Stack
+          screenOptions={({ route }) => ({
+            headerShown: route.name !== "index",  // Hide header for Register, show for others
+          })}
+        />   */}
       </View>
       <CustomFooter />
     </View>
@@ -40,9 +44,6 @@ export default function Layout() {
 }
 
 const styles = StyleSheet.create({
-  // outerContainer: {
-  //   flex: 1, // Ensure the outer container takes full height
-  // },
   container: {
     flex: 1, // Ensures the container takes the full screen height
   },
@@ -56,12 +57,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
+  logo: {
+    width: 40, // Adjust logo size as needed
+    height: 40,
+    marginHorizontal: 20, // Space between the logo and the text
+  },
   footerText: {
     color: "white",
     fontSize: 18,
     fontWeight: "100",
   },
-
   stickyHeader: {
     backgroundColor: "#2E0052",
     width: "100%", // Full width of the screen
