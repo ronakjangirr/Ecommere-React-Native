@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, Image } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, usePathname } from "expo-router";
 
 function CustomHeader() {
   return (
@@ -22,10 +22,15 @@ function CustomFooter() {
 }
 
 export default function Layout() {
+  const pathName = usePathname();     // To get the current pathName
+  const isDashboard = pathName === "/dashboard"; // Check if the current path is /dashboard
+
   return (
     <View style={styles.container}>
-      <CustomHeader />
-      <View style={styles.stackContainer}>
+      {pathName !== "/dashboard" && <CustomHeader />}
+      {/* <View style={styles.stackContainer}> */}
+      <View style={[styles.stackContainer, isDashboard && styles.fullscreenStackContainer]}>
+
         {/* <Stack/>  // Ex-1 Will show header name to all the route     */}  
         
         <Stack 
@@ -38,7 +43,7 @@ export default function Layout() {
           })}
         />   */}
       </View>
-      <CustomFooter />
+      {pathName !== "/dashboard" && <CustomFooter/>}
     </View>
   );
 }
@@ -51,6 +56,10 @@ const styles = StyleSheet.create({
     flex: 1, // Ensures that the stack takes the remaining available space
     marginTop: 40, // Adjust according to the header height
     marginBottom: 40, // Adjust according to the footer height
+  },
+  fullscreenStackContainer: {
+    marginTop: 0,   // Remove the margin if on the /dashboard route
+    marginBottom: 0,
   },
   headerText: {
     color: "white",
