@@ -8,7 +8,6 @@ function CustomHeader() {
           source={require('../assets/images/logo.png')} // Adjust the path to your logo
           style={styles.logo}
         />
-      {/* <Text style={styles.headerText}>Sticky Header</Text> */}
     </View>
   );
 }
@@ -69,7 +68,8 @@ const styles = StyleSheet.create({
   logo: {
     width: 40, // Adjust logo size as needed
     height: 40,
-    marginHorizontal: 20, // Space between the logo and the text
+    marginHorizontal: 40, // Space between the logo and the text
+    marginVertical:50
   },
   footerText: {
     color: "white",
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   stickyHeader: {
     backgroundColor: "#2E0052",
     width: "100%", // Full width of the screen
-    height: 40, // Height of 40px
+    height: 100, // Height of 40px
     position: "absolute", // Stick to the top
     top: 0,
     zIndex: 1000, // Make sure it's above other content

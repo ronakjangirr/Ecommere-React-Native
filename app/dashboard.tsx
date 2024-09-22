@@ -13,6 +13,7 @@ import Feather from "@expo/vector-icons/Feather";
 import Main from "./main";
 import Logout from "./logout";
 import Cart from "./cart";
+import { useRouter } from "expo-router";
 
 const Tab = createBottomTabNavigator(); // for Tab.Navigator
 // Get screen width
@@ -20,9 +21,11 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
+  const route= useRouter();
 
   const handleSearch = () => {
     console.log("Search initiated:", searchQuery);
+    route.push("/")
     // Add your search logic here
   };
 
