@@ -1,10 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Banner from './dashComponents/banner';
+import FilterButtons from './dashComponents/filterButtons';
 
 function Main() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Hello, I am Main Screen</Text>
+      <View style= {styles.bannerContainer}>
+      <Banner/>
+      </View>
+      <View style={styles.filterContainer}>
+        <FilterButtons />
+      </View>
     </View>
   );
 }
@@ -12,13 +19,18 @@ function Main() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#e0e0e0', // Add a background color for visibility
+    height: '100%', // Temporarily set a height
+
   },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  bannerContainer:{
+    alignItems: 'center', // Center the Banner horizontally
+    marginVertical:10
   },
+  filterContainer: {
+    zIndex: 1000, // Set the zIndex to ensure it appears above other components
+  },
+
 });
 
 export default Main;

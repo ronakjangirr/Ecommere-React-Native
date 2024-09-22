@@ -91,6 +91,11 @@ function Login() {
   const handleNavigate = () => {
     router.push("/");
   };
+
+  const handleDashboard = () => {
+    router.push("/dashboard");
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.welcomeContainer}>
@@ -138,6 +143,7 @@ function Login() {
           Create your Musicart account
         </Text>
       </Pressable>
+      <Text onPress={handleDashboard}>To dashboard</Text>
     </ScrollView>
   );
 }

@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, TextInput, Pressable, View, Text, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  Pressable,
+  View,
+  Text,
+  Dimensions,
+} from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import Feather from "@expo/vector-icons/Feather";
 import Main from "./main";
 import Logout from "./logout";
 import Cart from "./cart";
@@ -16,6 +25,21 @@ function Dashboard() {
     console.log("Search initiated:", searchQuery);
     // Add your search logic here
   };
+
+  const renderSearchBar = () => (
+    <View style={styles.headerCenterContainer}>
+      <TextInput
+        style={[styles.searchBar, { width: SCREEN_WIDTH * 0.7 }]} // Set width to 70% of the screen width
+        placeholder="Search..."
+        placeholderTextColor="lightgray"
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+      />
+      <Pressable style={styles.button} onPress={handleSearch}>
+        <Text style={styles.buttonText}>Go</Text>
+      </Pressable>
+    </View>
+  );
   return (
     <Tab.Navigator
       screenOptions={{
@@ -25,43 +49,50 @@ function Dashboard() {
         tabBarLabelStyle: styles.tabBarLabelStyle, // Font size for tab label
         tabBarActiveTintColor: "white", // Active tab color (icon/text)
         tabBarInactiveTintColor: "lightgray", // Inactive tab color (icon/text)
-        headerLeft: () => (
-          <View style={styles.headerRightContainer}>
-            <TextInput
-              style={[styles.searchBar, { width: SCREEN_WIDTH * 0.8 }]} // Set width to 80% of the screen width
-              placeholder="Search..."
-              placeholderTextColor="lightgray"
-              value={searchQuery}
-              onChangeText={setSearchQuery}
-            />
-            <Pressable style={styles.button} onPress={handleSearch}>
-              <Text style={styles.buttonText}>Go</Text>
-            </Pressable>
-          </View>
-        ),
+        headerTitle: () => renderSearchBar(), // Place the search bar in the center      // EX- 1  for showing the search bar
+        headerTitleAlign: "center", // Align the header title (search bar) in the center
+        // headerLeft: () => (                                                           // EX- 2
+        //   <View style={styles.headerRightContainer}>
+        //     <TextInput
+        //       style={[styles.searchBar, { width: SCREEN_WIDTH * 0.8 }]} // Set width to 80% of the screen width
+        //       placeholder="Search..."
+        //       placeholderTextColor="lightgray"
+        //       value={searchQuery}
+        //       onChangeText={setSearchQuery}
+        //     />
+        //     <Pressable style={styles.button} onPress={handleSearch}>
+        //       <Text style={styles.buttonText}>Go</Text>
+        //     </Pressable>
+        //   </View>
+        // ),
       }}
     >
-      <Tab.Screen 
-      name="Main" 
-      component={Main} 
-      options={{
-        headerTitle: "", // To Remove the label from header tab
-        // tabBarLabel: "", // To Remove the label from footer tab
-      }} 
+      <Tab.Screen
+        name="Home"
+        component={Main}
+        options={{
+          // headerTitle: "", // To Remove the label from header tab
+          // tabBarLabel: "", // To Remove the label from footer tab
+          tabBarIcon: () => <AntDesign name="home" size={24} color="white" />,
+        }}
       />
-      <Tab.Screen 
-      name="Cart" 
-      component={Cart} 
-      options={{
-        headerTitle: "", // To Remove the label from header tab
-      }}
+      <Tab.Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          // headerTitle: "", // To Remove the label from header tab
+          tabBarIcon: () => (
+            <Feather name="shopping-cart" size={24} color="white" />
+          ),
+        }}
       />
-      <Tab.Screen 
-      name="Logout" 
-      component={Logout} 
-      options={{
-        headerTitle: "", // To Remove the label from header tab
-      }}
+      <Tab.Screen
+        name="Logout"
+        component={Logout}
+        options={{
+          // headerTitle: "", // To Remove the label from header tab
+          tabBarIcon: () => <AntDesign name="login" size={24} color="white" />,
+        }}
       />
     </Tab.Navigator>
   );
@@ -70,7 +101,7 @@ function Dashboard() {
 const styles = StyleSheet.create({
   headerStyle: {
     backgroundColor: "#2E0052", // Purple color for the header
-    height: 60, // Height of the header
+    height: 100, // Height of the header
   },
   tabBarStyle: {
     backgroundColor: "#2E0052", // Purple color for the tab bar (footer)
@@ -78,6 +109,12 @@ const styles = StyleSheet.create({
   },
   tabBarLabelStyle: {
     fontSize: 14, // Font size of the tab labels
+  },
+  headerCenterContainer: {
+    flexDirection: "row", // Place search bar and button in a row
+    alignItems: "center", // Align items vertically in the center
+    justifyContent: "center", // Center items horizontally
+    width: SCREEN_WIDTH * 0.8, // Make the container width 80% of the screen width
   },
   headerRightContainer: {
     flexDirection: "row", // Place search bar and button in a row
