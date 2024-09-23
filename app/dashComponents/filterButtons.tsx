@@ -41,6 +41,7 @@ export default function FilterButtons() {
     { key: "2", value: "$50 - $100" },
     { key: "3", value: "$100 - $200" },
   ];
+
   return (
     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
       <View style={styles.buttonContainer}>
@@ -121,5 +122,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
   },
-
 });
