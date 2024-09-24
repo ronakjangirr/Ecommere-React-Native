@@ -7,6 +7,8 @@ interface Product {
   id: number;
   title: string;
   image: string;
+  price: number; // Add price to the interface
+
 }
 
 function Products() {
@@ -18,6 +20,7 @@ function Products() {
       try {
         // Fetch data from the fake API using axios
         const response = await axios.get("https://fakestoreapi.com/products");
+        debugger
         setProducts(response.data); // Set the fetched products
       } catch (err) {
         setError("Error fetching products"); // Handle the error
@@ -31,7 +34,9 @@ function Products() {
   const renderProduct = ({ item }: { item: Product }) => (
     <View style={styles.productContainer}>
       <Image source={{ uri: item.image }} style={styles.productImage} />
-      <Text style={styles.productTitle}>{item.title}</Text>
+      <Text style={styles.productTitle}>Product Name: {item.title}</Text>
+      <Text style={styles.productTitle}>Price: {item.price}</Text>
+
     </View>
   );
   return (

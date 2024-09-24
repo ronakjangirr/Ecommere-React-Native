@@ -106,6 +106,7 @@ function Register() {
             </Text>
           </View>
 
+          <Text style={styles.inputName}>Your name</Text>
           <TextInput
             value={register.name}
             onChangeText={(text) => handleChange("name", text)}
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
   input: {
     padding: 10,
     borderRadius: 5,
-    marginBottom: 15,
+    marginBottom: 5,
     fontSize: 16,
     borderColor: "#ddd",
     borderWidth: 2, // Border width
@@ -244,7 +245,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
   },
-
   errorInput: {
     borderColor: "red",
   },

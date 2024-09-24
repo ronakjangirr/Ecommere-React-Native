@@ -21,11 +21,11 @@ const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
-  const route= useRouter();
+  const route = useRouter();
 
   const handleSearch = () => {
     console.log("Search initiated:", searchQuery);
-    route.push("/")
+    route.push("/");
     // Add your search logic here
   };
 
@@ -76,7 +76,9 @@ function Dashboard() {
         options={{
           // headerTitle: "", // To Remove the label from header tab
           // tabBarLabel: "", // To Remove the label from footer tab
-          tabBarIcon: () => <AntDesign name="home" size={24} color="white" />,
+          tabBarIcon: () => (<AntDesign name="home" size={24} color="#2E0052" />),
+          tabBarLabel: "Home", // Label text
+          tabBarLabelStyle: { color: "#2E0052" }, // Set the label color to #2E0052
         }}
       />
       <Tab.Screen
@@ -85,8 +87,10 @@ function Dashboard() {
         options={{
           // headerTitle: "", // To Remove the label from header tab
           tabBarIcon: () => (
-            <Feather name="shopping-cart" size={24} color="white" />
+            <Feather name="shopping-cart" size={24} color="#2E0052" />
           ),
+          tabBarLabel: "Cart", // Label text
+          tabBarLabelStyle: { color: "#2E0052" }, // Set the label color to #2E0052
         }}
       />
       <Tab.Screen
@@ -94,7 +98,12 @@ function Dashboard() {
         component={Logout}
         options={{
           // headerTitle: "", // To Remove the label from header tab
-          tabBarIcon: () => <AntDesign name="login" size={24} color="white" />,
+          tabBarIcon: () => (
+            <AntDesign name="login" size={24} color="#2E0052" />
+          ),
+          tabBarLabel: "Logout", // Label text
+          tabBarLabelStyle: { color: "#2E0052" }, // Set the label color to #2E0052
+          tabBarStyle: { display: "none" }, // Hide tab bar for this screen
         }}
       />
     </Tab.Navigator>
@@ -107,7 +116,8 @@ const styles = StyleSheet.create({
     height: 100, // Height of the header
   },
   tabBarStyle: {
-    backgroundColor: "#2E0052", // Purple color for the tab bar (footer)
+    // backgroundColor: "#2E0052", // Purple color for the tab bar (footer)
+    backgroundColor: "white", // Purple color for the header
     height: 60, // Height of the tab bar
   },
   tabBarLabelStyle: {
