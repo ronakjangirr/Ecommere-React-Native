@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, FlatList, StyleSheet } from "react-native";
+import { View, Text, Image, FlatList, StyleSheet,Pressable } from "react-native";
 import axios from "axios";
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 // Define the type for the product items
 interface Product {
@@ -14,6 +15,7 @@ interface Product {
 function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const navigation = useNavigation(); // Use navigation hook
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,12 +34,20 @@ function Products() {
   }, []);
 
   const renderProduct = ({ item }: { item: Product }) => (
-    <View style={styles.productContainer}>
+    // <View style={styles.productContainer}>
+      <Pressable
+      style={({ pressed }) => [
+        styles.productContainer,
+        { opacity: pressed ? 0.6 : 1 } // Add visual feedback when pressed
+      ]}
+      onPress={() => navigation.navigate('ProductDetail', { product: item })} // Navigate to ProductDetail
+    >
       <Image source={{ uri: item.image }} style={styles.productImage} />
       <Text style={styles.productTitle}>Product Name: {item.title}</Text>
       <Text style={styles.productTitle}>Price: {item.price}</Text>
+      </Pressable>
+    // </View>
 
-    </View>
   );
   return (
     <View style={styles.container}>

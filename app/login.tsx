@@ -68,7 +68,8 @@ function Login() {
           if (login.email === email && login.password === password) {
             // Navigate to the Dashboard
             // navigation.navigate('dashboard') // Assuming 'Dashboard' is your route name
-            router.push("/dashboard"); // Use the correct route path
+            router.push("/home"); // Use the correct route path
+
           } else {
             // Show error if credentials do not match
             setErrors({
@@ -93,7 +94,8 @@ function Login() {
   };
 
   const handleDashboard = () => {
-    router.push("/dashboard");
+    router.push("/home");
+
   };
 
   return (

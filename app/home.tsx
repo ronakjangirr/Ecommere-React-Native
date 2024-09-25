@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator(); // for Tab.Navigator
 // Get screen width
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
-function Dashboard() {
+function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const route = useRouter();
 
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Dashboard;
+export default Home;
 
 // NOTE-
 // Yes, headerStyle, tabBarStyle, and similar properties are predefined options

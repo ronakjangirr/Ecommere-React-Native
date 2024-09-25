@@ -22,13 +22,15 @@ function CustomFooter() {
 
 export default function Layout() {
   const pathName = usePathname();     // To get the current pathName
-  const isDashboard = pathName === "/dashboard"; // Check if the current path is /dashboard
+  const isHome = pathName === "/home"; // Check if the current path is /dashboard
 
   return (
     <View style={styles.container}>
-      {pathName !== "/dashboard" && <CustomHeader />}
+      {pathName !== "/home" && <CustomHeader />}
+
       {/* <View style={styles.stackContainer}> */}
-      <View style={[styles.stackContainer, isDashboard && styles.fullscreenStackContainer]}>
+      {/* <View style={[styles.stackContainer, isDashboard && styles.fullscreenStackContainer]}> */}
+      <View style={[styles.stackContainer, isHome && styles.fullscreenStackContainer]}>
 
         {/* <Stack/>  // Ex-1 Will show header name to all the route     */}  
         
@@ -42,7 +44,8 @@ export default function Layout() {
           })}
         />   */}
       </View>
-      {pathName !== "/dashboard" && <CustomFooter/>}
+      {pathName !== "/home" && <CustomFooter/>}
+
     </View>
   );
 }
